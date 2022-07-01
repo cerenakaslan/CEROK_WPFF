@@ -1,0 +1,28 @@
+﻿<Window x:Class="CEROK_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="650">
+    <Grid>
+        <Frame Name="frame1" NavigationUIVisibility="Hidden" />
+        <DataGrid x:Name="gridullah" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible"
+                  VerticalScrollBarVisibility="Visible" CanUserResizeColumns="True" CanUserAddRows="False" SelectionChanged="gridullah_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Randevu ID"  Binding="{Binding Path=randevuID}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Hasta TC" Binding="{Binding Path=hasta.tc}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Hasta İsim" Binding="{Binding Path=hasta.isim}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Hasta Soyad" Binding="{Binding Path=hasta.soyad}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Kan Grubu" Binding="{Binding Path=hasta.kanGrubu}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Randevu Zamanı" Binding="{Binding Path=gunsaat}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Hasta Cinsiyeti" Binding="{Binding Path=hasta.cinsiyet}"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="bunyamin" Click="bunyamin_Click">GİRİŞ</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

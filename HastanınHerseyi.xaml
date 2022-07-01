@@ -1,0 +1,114 @@
+﻿<Window x:Class="CEROK_WPF.HastanınHerseyi"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CEROK_WPF"
+        mc:Ignorable="d"
+        Title="HastanınHerseyi" Height="450" Width="700">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Bilgiler" x:Name="Bilgiler" >
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  ></ColumnDefinition>
+                        <ColumnDefinition   ></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition ></RowDefinition>
+                        <RowDefinition  ></RowDefinition>
+                        <RowDefinition  ></RowDefinition>
+                        <RowDefinition  ></RowDefinition>
+                        <RowDefinition  ></RowDefinition>
+                        <RowDefinition ></RowDefinition>
+                        <RowDefinition  ></RowDefinition>
+                        <RowDefinition ></RowDefinition>
+                        <RowDefinition  ></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Hasta TC:" Grid.Column="0" Grid.Row="0"/>
+                    <Label Content="Hasta İsim:"  Grid.Column="0" Grid.Row="1"/>
+                    <Label Content="Hasta Soyad:"  Grid.Column="0" Grid.Row="2"/>
+                    <Label Content="Kan Grubu:"  Grid.Column="0" Grid.Row="3"/>
+                    <Label Content="Cinsiyeti:"  Grid.Column="0" Grid.Row="4"/>
+                    <Label Content="Yaş:"  Grid.Column="0" Grid.Row="5"/>
+                    <Label Content="Boy:"  Grid.Column="0" Grid.Row="6"/>
+                    <Label Content="Kilo:"  Grid.Column="0" Grid.Row="7"/>
+
+                    <TextBox x:Name="txtHastaTC" Grid.Column="1" Grid.Row="0" Text = "{Binding Path= tc}"></TextBox>
+                    <TextBox x:Name="txtHastaİsim" Grid.Column="1" Grid.Row="1" Text="{Binding Path= isim}"></TextBox>
+                    <TextBox x:Name="txtHastaSoyad" Grid.Column="1" Grid.Row="2" Text="{Binding Path= soyad}"></TextBox>
+                    <TextBox x:Name="txtKanGrubu" Grid.Column="1" Grid.Row="3" Text="{Binding Path= kanGrubu}"></TextBox>
+                    <TextBox x:Name="txtCinsiyeti" Grid.Column="1" Grid.Row="4" Text="{Binding Path= cinsiyet}"></TextBox>
+                    <TextBox x:Name="txtYaş" Grid.Column="1" Grid.Row="5" Text="{Binding Path= yas}"></TextBox>
+                    <TextBox x:Name="txtBoy" Grid.Column="1" Grid.Row="6" Text="{Binding Path= boy}"></TextBox>
+                    <TextBox x:Name="txtKilo" Grid.Column="1" Grid.Row="7" Text="{Binding Path= kilo}"></TextBox>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tetkikler" x:Name="Tetkikler">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Hastanın Geçmiş Tetkikleri" Background="Green"></TextBlock>
+                    <TextBlock x:Name="YeniTetkikBar" Text="Hastaya Yeni Tetkik verme" Background="Brown" Visibility="Hidden"/>
+                    <Button x:Name="BTNYeniTetkik" Grid.Row="0" Width="43" RenderTransformOrigin="2.379,0.609" Margin="633,0,10,0" Background="Chocolate" Click="BTNYeniTetkik_Click" Content="Ekle"></Button>
+                    <Button x:Name="EditBTN" Grid.Row="0" Margin="553,0,75,0" Content="Düzenle" Click="EditBTN_Click"/>
+                    <Button x:Name="CancelBTN" Content=" X " Grid.Row="0" Width="43" Margin="532,0,111,0" Background="Red" Visibility="Hidden" Click="CancelBTN_Click" ></Button>
+                    <ListView Grid.Row="1" x:Name="VarOlanTetkikler">
+                        <ListViewItem DataContext="{Binding Path=tetkiks}"></ListViewItem>
+                    </ListView>
+                    <ListBox x:Name="YeniTetkik" Grid.Row="1" Visibility="Hidden">
+                        <ListBoxItem x:Name="tetkik1">1</ListBoxItem>
+                        <ListBoxItem x:Name="tetkik2">2</ListBoxItem>
+                        <ListBoxItem x:Name="tetkik3">3</ListBoxItem>
+                        <ListBoxItem x:Name="tetkik4">4</ListBoxItem>
+                        <ListBoxItem x:Name="tetkik5">5</ListBoxItem>
+                        <ListBoxItem x:Name="tetkik6">6</ListBoxItem>
+                        <ListBoxItem x:Name="tetkik7">7</ListBoxItem>
+                    </ListBox>
+                </Grid>
+
+
+            </TabItem>
+            <TabItem Header="Tanılar" x:Name="Tanılar"></TabItem>
+            <TabItem Header="Raporlar" x:Name="Raporlar"></TabItem>
+            <TabItem Header="Randevular" x:Name="Randevular" Height="23">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="119*"/>
+                        <ColumnDefinition Width="225*"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame Name="frame1" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2" Margin="0,0,0,-0.4" />
+                    <DataGrid x:Name="gridullah_randevular" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible"
+                  VerticalScrollBarVisibility="Visible" CanUserResizeColumns="True" CanUserAddRows="False" Grid.ColumnSpan="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Randevu ID" x:Name="Randevu_ID" Binding="{Binding Path=randevuID}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Doktor İsim" Binding="{Binding Path=doktor.doktorismi}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Doktor Soyismi" Binding="{Binding Path=doktor.doktorsoyismi}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Randevu Zamanı" Binding="{Binding Path=gunsaat}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Poliklinik" Binding="{Binding Path=bolumIsmi}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Hastane" Binding="{Binding Path=hastaneIsim}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="İl" Binding="{Binding Path=il.ilIsmi}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="İlçe" Binding="{Binding Path=ilce.ilceIsmi}"></DataGridTextColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+
+
+
+
+
+    </Grid>
+</Window>
