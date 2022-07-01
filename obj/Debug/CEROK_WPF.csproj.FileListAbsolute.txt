@@ -43,7 +43,9 @@ C:\git\CEROK_STAJ_WINDOWS-main\CEROK_WPF\obj\Debug\CEROK_WPF.csproj.CopyComplete
 C:\git\CEROK_STAJ_WINDOWS\CEROK_WPF\obj\Debug\CEROK_WPF_MarkupCompile.lref
 C:\git\CEROK_STAJ_WINDOWS\CEROK_WPF\obj\Debug\HastanınHerseyi.g.cs
 C:\git\CEROK_STAJ_WINDOWS\CEROK_WPF\obj\Debug\HastanınHerseyi.baml
+C:\git\CEROK_STAJ_WINDOWS\CEROK_WPF\obj\Debug\CEROK_WPF.TetkikSonuclariniGirmeSayfasi.resources
 C:\git\CEROK_STAJ_WINDOWS-main\CEROK_WPF\obj\Debug\HastanınHerseyi.g.cs
 C:\git\CEROK_STAJ_WINDOWS-main\CEROK_WPF\obj\Debug\CEROK_WPF_MarkupCompile.lref
 C:\git\CEROK_STAJ_WINDOWS-main\CEROK_WPF\obj\Debug\HastanınHerseyi.baml
-C:\git\CEROK_STAJ_WINDOWS-main\CEROK_WPF\obj\Debug\CEROK_WPF.TetkikSonuclariniGirmeSayfasi.resources
+C:\git\CEROK_STAJ_WINDOWS-main\CEROK_WPF\bin\Debug\System.Net.Http.Formatting.dll
+C:\git\CEROK_STAJ_WINDOWS-main\CEROK_WPF\bin\Debug\System.Net.Http.Formatting.xml

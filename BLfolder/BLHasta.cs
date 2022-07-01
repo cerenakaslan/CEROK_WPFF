@@ -27,7 +27,7 @@ namespace CEROK_WPF.BLfolder
         public List<BLRandevuKismi> randevuKismis { get; set; }
         public List<BLRecete> recetes { get; set; }
         public List<BLTani> tanis { get; set; }
-        public List<BLTetkik> tetkiks { get; set; }
+        
 
 
         public async Task<BLHasta> LoadHASTA(int randevuID)

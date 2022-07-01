@@ -19,7 +19,7 @@ namespace CEROK_WPF.BLfolder
         public BLHasta hasta { get; set; }
         public List<BLRecete> recetes { get; set; }
         public List<BLTani> tanis { get; set; }
-        public List<BLTetkik> tetkiks { get; set; }
+        public List<BLRandevuTetkik> RandevuTetkiks { get; set; }
 
        public async Task<List<BLRandevuKismi>> LoadRandevuListesi()
         {
@@ -36,10 +36,24 @@ namespace CEROK_WPF.BLfolder
             List<BLRandevuKismi> randevuListesi = 
                 JsonConvert.DeserializeObject<List<BLRandevuKismi>>(content);
             return randevuListesi;
-           
-
+            
         }
-        
+
+        public async Task<List<BLRandevuKismi>> GetBLRandevusByHastaID(int hastaID)
+        {
+            HttpClient doktor = new HttpClient();
+            doktor.BaseAddress = new Uri("https://localhost:7086/");
+
+            doktor.DefaultRequestHeaders.Accept.Add(
+               new MediaTypeWithQualityHeaderValue("application/json"));
+
+
+            HttpResponseMessage response = await doktor.GetAsync($"api/RandevuKismi/RandevusByHastaID/{hastaID}");
+            var content = await response.Content.ReadAsStringAsync();
+            List<BLRandevuKismi> randevuListesi =
+                JsonConvert.DeserializeObject<List<BLRandevuKismi>>(content);
+            return randevuListesi;
+        }
 
     }
 }
