@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,36 +20,53 @@ namespace CEROK_WPF
     /// Interaction logic for HastanınHerseyi.xaml
     /// </summary>
     public partial class HastanınHerseyi : Window
+
     {
         #region Definitions
         private BLHasta blhs = new BLHasta();
-        private int randevuID;    
-        private BLRandevuKismi blrd = new BLRandevuKismi();
+        private int randevuID;
+        private BLTetkik BlTetkik = new BLTetkik();
+        private BLRandevuKismi rdv = new BLRandevuKismi();
+        private BLRandevuTetkik BLRandevuTetkik = new BLRandevuTetkik();
+        private  List<BLRandevuKismi> HastaninTumRandevular = new List<BLRandevuKismi>();
+        private List<BLRandevuTetkik> HastaninRDVTetkikler = new List<BLRandevuTetkik>();
+
         #endregion
+
         public HastanınHerseyi(int randevuid)
         {
             InitializeComponent();
-            GetRandevusTablo();
             randevuID = randevuid;
-            blhs= App.Randevular.Where(x => x.randevuID == randevuid).Select(y => y.hasta).FirstOrDefault();
-            this.DataContext = blhs;
-            //  blhs = App.Randevular.Where(x => x.randevuID == randevuid).Select(y => y.hasta).FirstOrDefault();
-            this.gridullah_randevular.DataContext = blhs;
-
+            rdv = App.Randevular.Where(x => x.randevuID == randevuID).Select(x => x).FirstOrDefault();
+            blhs = rdv.hasta;
+            Bilgiler.DataContext = blhs;
+            TetkikKisimiVeriler();
+            
         }
-        public async void GetRandevusTablo()
+        public async void TetkikKisimiVeriler()
         {
-            List<BLRandevuKismi> randevuListesi = await blrd.LoadRandevuListesi();
-            gridullah_randevular.ItemsSource = randevuListesi;
-            App.Randevular = randevuListesi;
+            App.Tetkikler = await BlTetkik.LoadTetkiks();
+            foreach (BLTetkik item in App.Tetkikler)
+            {
+                ListBoxItem listItem = new ListBoxItem();
+                listItem.Content = item.tetkikAyrinti;
+                listItem.Tag = item.tetkikID;
+                TetkikListesi.Items.Add(listItem);
+            }
+            
+            
         }
+
+
+
         private void BTNYeniTetkik_Click(object sender, RoutedEventArgs e)
         {
             CancelBTN.Visibility = Visibility.Visible;
             BTNYeniTetkik.Visibility = Visibility.Hidden;
             EditBTN.Visibility = Visibility.Hidden;
-            YeniTetkik.Visibility = Visibility.Visible;
+            TetkikListesi.Visibility = Visibility.Visible;
             YeniTetkikBar.Visibility = Visibility.Visible;
+            SaveBTN.Visibility = Visibility.Visible;
         }
 
         private void CancelBTN_Click(object sender, RoutedEventArgs e)
@@ -56,17 +74,46 @@ namespace CEROK_WPF
             CancelBTN.Visibility = Visibility.Hidden;
             BTNYeniTetkik.Visibility = Visibility.Visible;
             EditBTN.Visibility = Visibility.Visible;
-            YeniTetkik.Visibility = Visibility.Hidden;
+            TetkikListesi.Visibility = Visibility.Hidden;
             YeniTetkikBar.Visibility = Visibility.Hidden;
+            SaveBTN.Visibility = Visibility.Hidden;
         }
 
-        private void EditBTN_Click(object sender, RoutedEventArgs e)
+        private async void SaveBTN_Click(object sender, RoutedEventArgs e)
         {
 
+
+            List<BLRandevuTetkik> liste = new List<BLRandevuTetkik>();
+            foreach (ListBoxItem item in TetkikListesi.Items)
+            {
+                BLRandevuTetkik bl = new BLRandevuTetkik();
+
+                bl.RandevuID = rdv.randevuID;
+                bl.TetkikID = Convert.ToInt32(item.Tag.ToString());
+                bl.IsChecked = item.IsSelected;
+                //listeye BLRANDEVUTETKİK gir 
+                liste.Add(bl);
+
+            }
+            BLRandevuTetkik.AddTETKIK(liste);
+            Thread.Sleep(50);
+            VarOlanTetkikler.ItemsSource=await BLRandevuTetkik.LoadTetkiksToVarolanTetkikler(rdv.randevuID);
+
+
+
+
+            //FİNAL
+            CancelBTN.Visibility = Visibility.Hidden;
+            BTNYeniTetkik.Visibility = Visibility.Visible;
+            EditBTN.Visibility = Visibility.Visible;
+            TetkikListesi.Visibility = Visibility.Hidden;
+            YeniTetkikBar.Visibility = Visibility.Hidden;
+            SaveBTN.Visibility = Visibility.Hidden;
         }
     }
-
 }
+
+
 
 // txtHastaTC.Text = App.HastaId.ToString();
 // blhasta.LoadHASTA(this);

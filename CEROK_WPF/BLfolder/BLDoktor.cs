@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using CEROK_WPF;
+using System.Collections.Generic;
 
 namespace CEROK_WPF.BLfolder
 {
@@ -13,10 +14,10 @@ namespace CEROK_WPF.BLfolder
         public string doktorpassword { get; set; }
         public string doktorismi { get; set; }
         public string doktorsoyismi { get; set; }
-        //public List<BLDoktorPoli> doktor_Polis { get; set; }
-        //public List<BLRandevuKismi> randevuKismis { get; set; }
-        //public List<BLRecete> recetes { get; set; }
-        //public List<BLTani> tanis { get; set; }
+        public List<BLDoktorPoli> doktor_Polis { get; set; }
+        public List<BLRandevuKismi> randevuKismis { get; set; }
+        public List<BLRecete> recetes { get; set; }
+        public List<BLTani> tanis { get; set; }
         //public List<BLTetkik> tetkiks { get; set; }
 
         public async Task<bool> BLDoktorLogin(int id, string password)

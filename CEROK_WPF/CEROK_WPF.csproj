@@ -46,6 +46,9 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
       <Private>True</Private>
@@ -78,10 +81,12 @@
     <Compile Include="BLfolder\BLIl.cs" />
     <Compile Include="BLfolder\BLIlce.cs" />
     <Compile Include="BLfolder\BLRandevuKismi.cs" />
+    <Compile Include="BLfolder\BLRandevuTetkik.cs" />
     <Compile Include="BLfolder\BLRapor.cs" />
     <Compile Include="BLfolder\BLRecete.cs" />
     <Compile Include="BLfolder\BLTani.cs" />
     <Compile Include="BLfolder\BLTetkik.cs" />
+    <Compile Include="BLfolder\CustomTypes.cs" />
     <Compile Include="HastanınHerseyi.xaml.cs">
       <DependentUpon>HastanınHerseyi.xaml</DependentUpon>
     </Compile>

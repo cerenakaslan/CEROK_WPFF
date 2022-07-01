@@ -58,50 +58,27 @@
                     <TextBlock Grid.Row="0" Text="Hastanın Geçmiş Tetkikleri" Background="Green"></TextBlock>
                     <TextBlock x:Name="YeniTetkikBar" Text="Hastaya Yeni Tetkik verme" Background="Brown" Visibility="Hidden"/>
                     <Button x:Name="BTNYeniTetkik" Grid.Row="0" Width="43" RenderTransformOrigin="2.379,0.609" Margin="633,0,10,0" Background="Chocolate" Click="BTNYeniTetkik_Click" Content="Ekle"></Button>
-                    <Button x:Name="EditBTN" Grid.Row="0" Margin="553,0,75,0" Content="Düzenle" Click="EditBTN_Click"/>
+                    <Button x:Name="EditBTN" Grid.Row="0" Margin="553,0,75,0" Content="Düzenle"/>
                     <Button x:Name="CancelBTN" Content=" X " Grid.Row="0" Width="43" Margin="532,0,111,0" Background="Red" Visibility="Hidden" Click="CancelBTN_Click" ></Button>
-                    <ListView Grid.Row="1" x:Name="VarOlanTetkikler">
-                        <ListViewItem DataContext="{Binding Path=tetkiks}"></ListViewItem>
-                    </ListView>
-                    <ListBox x:Name="YeniTetkik" Grid.Row="1" Visibility="Hidden">
-                        <ListBoxItem x:Name="tetkik1">1</ListBoxItem>
-                        <ListBoxItem x:Name="tetkik2">2</ListBoxItem>
-                        <ListBoxItem x:Name="tetkik3">3</ListBoxItem>
-                        <ListBoxItem x:Name="tetkik4">4</ListBoxItem>
-                        <ListBoxItem x:Name="tetkik5">5</ListBoxItem>
-                        <ListBoxItem x:Name="tetkik6">6</ListBoxItem>
-                        <ListBoxItem x:Name="tetkik7">7</ListBoxItem>
+                    <DataGrid Grid.Row="1" x:Name="VarOlanTetkikler" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeColumns="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tetkik Adı" Binding="{Binding Path=Tetkik.tetkikAyrinti}" Width="250"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Randevu ID" Binding="{Binding Path=RandevuID}" Width="250"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Tarih" Binding="{Binding Path=Randevu.gunsaat}" Width="250"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <ListBox x:Name="TetkikListesi" Grid.Row="1" Visibility="Hidden" SelectionMode="Multiple">
                     </ListBox>
+                        <Button x:Name="SaveBTN" Content="KAYDET" Click="SaveBTN_Click" Margin="10,331,-10,0" Grid.Row="1" Visibility="Hidden"/>
+
+
                 </Grid>
 
 
             </TabItem>
             <TabItem Header="Tanılar" x:Name="Tanılar"></TabItem>
             <TabItem Header="Raporlar" x:Name="Raporlar"></TabItem>
-            <TabItem Header="Randevular" x:Name="Randevular" Height="23">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="119*"/>
-                        <ColumnDefinition Width="225*"/>
-                    </Grid.ColumnDefinitions>
-                    <Frame Name="frame1" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2" Margin="0,0,0,-0.4" />
-                    <DataGrid x:Name="gridullah_randevular" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible"
-                  VerticalScrollBarVisibility="Visible" CanUserResizeColumns="True" CanUserAddRows="False" Grid.ColumnSpan="2">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Randevu ID" x:Name="Randevu_ID" Binding="{Binding Path=randevuID}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Doktor İsim" Binding="{Binding Path=doktor.doktorismi}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Doktor Soyismi" Binding="{Binding Path=doktor.doktorsoyismi}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Randevu Zamanı" Binding="{Binding Path=gunsaat}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Poliklinik" Binding="{Binding Path=bolumIsmi}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Hastane" Binding="{Binding Path=hastaneIsim}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="İl" Binding="{Binding Path=il.ilIsmi}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="İlçe" Binding="{Binding Path=ilce.ilceIsmi}"></DataGridTextColumn>
-
-                        </DataGrid.Columns>
-                    </DataGrid>
-
-                </Grid>
-            </TabItem>
+            <TabItem Header="Randevular" x:Name="Randevular"></TabItem>
 
         </TabControl>
 

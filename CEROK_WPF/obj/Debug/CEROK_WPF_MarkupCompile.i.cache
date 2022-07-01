@@ -12,8 +12,13 @@ DEBUG;TRACE
 C:\git\CEROK_WPFF\App.xaml
 3487717420
 
+<<<<<<< HEAD:CEROK_WPF/obj/Debug/CEROK_WPF_MarkupCompile.i.cache
 211004813281
 1231178803959
+=======
+23-1085320037
+124196717765
+>>>>>>> 36f7dd71e4514f3b5b697b10028ac3bd825f12dd:obj/Debug/CEROK_WPF_MarkupCompile.cache
 HastanınHerseyi.xaml;Login.xaml;MainWindow.xaml;
 
 False

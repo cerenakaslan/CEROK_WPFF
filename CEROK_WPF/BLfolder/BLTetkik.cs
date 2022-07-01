@@ -16,25 +16,38 @@ namespace CEROK_WPF.BLfolder
     {
         public int tetkikID { get; set; }
         public string tetkikAyrinti { get; set; }
-        public int hastaID { get; set; }
-        public int doktorID { get; set; }
-        public int randevuID { get; set; }
-        public string tetkikSonuc { get; set; }
-        public BLDoktor doktor { get; set; }
-        public BLHasta hasta { get; set; }
-        public BLRandevuKismi randevu { get; set; }
+        
+        
+        
+        public List<BLRandevuTetkik> RandevuTetkiks { get; set; }
 
-        public async Task<List<BLTetkik>> LoadTETKIK(int hastaID)
+        public async Task<List<BLTetkik>> LoadTetkiks()
         {
             HttpClient tetkik = new HttpClient();
             tetkik.BaseAddress = new Uri("https://localhost:7086/");
 
-            tetkik.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            tetkik.DefaultRequestHeaders.Accept.Add(
+               new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response = await tetkik.GetAsync($"api/Tetkik/{App.HastaId}");
+            HttpResponseMessage response = await tetkik.GetAsync($"api/Tetkik");
             var content = await response.Content.ReadAsStringAsync();
-            List<BLTetkik> tetkikListesi = JsonConvert.DeserializeObject<List<BLTetkik>>(content);
-            return tetkikListesi;
+            return JsonConvert.DeserializeObject<List<BLTetkik>>(content);
+
+        }
+        public async Task<int> GetTetkikId(string item)
+        {
+            HttpClient doktor = new HttpClient();
+            doktor.BaseAddress = new Uri("https://localhost:7086/");
+
+            doktor.DefaultRequestHeaders.Accept.Add(
+               new MediaTypeWithQualityHeaderValue("application/json"));
+
+
+            HttpResponseMessage response = await doktor.GetAsync($"api/Tetkik/{item}");
+            var content = await response.Content.ReadAsStringAsync();
+            int TetkikID =
+                JsonConvert.DeserializeObject<int>(content);
+            return TetkikID;
         }
     }
 }

@@ -26,6 +26,8 @@ namespace CEROK_WPF
         #region Definitions
         private BLRandevuKismi blrd = new BLRandevuKismi();
         
+       // private BLHasta blhasta = new BLHasta();
+        
         #endregion Definitions
         public MainWindow()
         {
@@ -47,9 +49,9 @@ namespace CEROK_WPF
         private void bunyamin_Click(object sender, RoutedEventArgs e)
         {
             BLRandevuKismi rdv= ((FrameworkElement)sender).DataContext as BLRandevuKismi;
+            // App.RandevuId = rdv.hastaID;
             HastanınHerseyi hastanınHerseyi = new HastanınHerseyi(rdv.randevuID);
             hastanınHerseyi.Show();
-
         }
 
         private void gridullah_SelectionChanged(object sender, SelectionChangedEventArgs e)
